@@ -1,0 +1,17 @@
+# Este teste de simulação de carga irá simular o registro de alunos em uma turma.
+# Ele simula um pico de tráfego de 20 usuários por segundo durante 10 segundos.
+# O objetivo é verificar se a aplicação suporta o aumento de tráfego sem falhas.
+
+config:
+  target: 'http://34.207.112.202:3001' # URL da aplicação
+  phases:
+    - duration: 10 # Duração da simulação em segundos
+      arrivalRate: 20 # Taxa de chegada de usuários por segundo
+      name: 'Pico de Carga'
+scenarios:
+  - flow:
+      - post: # Método HTTP POST
+          url: '/classrooms/add-student' # Rota
+          json: # Dados para adicionar um aluno a uma turma
+            studentId: 4
+            classroomId: 1

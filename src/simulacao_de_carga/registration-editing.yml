@@ -1,0 +1,31 @@
+
+# O teste de simulação de carga envia requisições PATCH para a rota de edição de perfil de usuários cadastrados. 
+# O objetivo é simular o comportamento de múltiplos usuários editando perfis simultaneamente.
+
+config:
+  target: 'http://54.82.49.201:3001' # URL da aplicação (URL temporária, pois é da AWS Academy)
+  phases:
+    - duration: 1 # Duração da simulação em segundos
+      arrivalRate: 200 # Taxa de chegada de usuários por segundo
+      name: 'Pico de Carga'
+
+scenarios:
+  - flow:
+      - think: 3 # Espera de 3 segundos após o login (simula navegação)
+      - patch: # Método HTTP PATCH
+          url: '/students/1' # Rota de edição de perfil do estudante, substitua 'ID_DO_ESTUDANTE' pelo ID real do estudante
+          json:
+            name: "Pedro" # Novo nome a ser atualizado
+            gender: "M"
+            maritalstatus: "Casado"
+            raceethnicity: "Branco"
+            dateofbirth: "2005-01-20"
+            address: "Rua Inteli"
+            city: "São Paulo"
+            state: "SP"
+            phonenumber: "123444444"
+            landline: "23982832983923829"
+            email: "Pedro@example.com" # Novo e-mail a ser atualizado
+            rg: "123"
+            cpf: "1323445"
+            ongid: 1

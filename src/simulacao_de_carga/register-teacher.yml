@@ -1,0 +1,31 @@
+# Este teste de simulação de carga irá simular a criação de novos professores em massa.
+# Ele simula um pico de tráfego de 20 usuários por segundo durante 60 segundos.
+# O objetivo é verificar se a aplicação suporta o aumento de tráfego sem falhas.
+
+config:
+  target: 'http://18.209.240.98:3000/' # URL da aplicação
+  phases:
+    - duration: 60 # Duração do teste em segundos
+      arrivalRate: 20 # Novos usuários (requisições) por segundo
+  defaults:
+    headers:
+      Content-Type: 'application/json' # Definindo o cabeçalho padrão para as requisições
+
+scenarios:
+  - flow:
+      - post:
+          url: "/teachers"
+          json: # Dados atualizados para a criação de um novo professor
+            name: "Nome Teste"
+            gender: "Masculino"
+            dateofbirth: "1980-09-24"
+            address: "Rua ABC"
+            maritalstatus: "Solteiro"
+            raceethnicity: "Branco"
+            city: "Sao Paulo"
+            state: "SP"
+            phonenumber: "85888888"
+            landline: "85888778"
+            email: "exemplo@hotmail.com"
+            rg: "114111111"
+            cpf: "22222522222"

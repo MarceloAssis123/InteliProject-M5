@@ -1,0 +1,14 @@
+# Este teste de simulação de carga é um exemplo de um teste de disponibilidade.
+# Ele simula um pico de tráfego de 50 usuários por segundo durante 120 segundos.
+# O objetivo é verificar se a aplicação suporta o aumento de tráfego sem falhas.
+
+config:
+  target: 'http://18.209.240.98:3000/' # URL da aplicação (URL temporária, pois é da AWS Academy)
+  phases:
+    - duration: 1 # Duração da simulação em segundos
+      arrivalRate: 200 # Taxa de chegada de usuários por segundo
+      name: 'Pico de Carga'
+scenarios:
+  - flow:
+      - get: # Método HTTP GET
+          url: '/' # Rota da aplicação

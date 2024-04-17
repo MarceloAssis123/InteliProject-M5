@@ -1,0 +1,20 @@
+config:
+  target: 'http://54.82.49.201:3001' # URL da aplicação (URL temporária, pois é da AWS Academy)
+  phases:
+    - duration: 10 # Duração da simulação em segundos
+      arrivalRate: 20 # Taxa de chegada de usuários por segundo
+      name: 'Pico de Carga'
+scenarios:
+  - flow:
+      - think: 3 # Espera de 3 segundos após o login (simula navegação)
+      - post: # Método HTTP POST
+          url: '/classrooms/1/class' # Rota de edição de perfil do estudante, substitua 'ID_DO_ESTUDANTE' pelo ID real do estudante
+          json:
+            datetime: "2024-03-25" # Data da aula
+            presence:
+              - studentid: 1 
+                presence: true 
+              - studentid: 2 
+                presence: true 
+              - studentid: 3
+                presence: false 
