@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/local/app
+    ports:
+      - "80:80"
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/usr/local/app
+    ports:
+      - "3001:3001"
